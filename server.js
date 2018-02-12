@@ -7,3 +7,7 @@ var PORT = 3000;
 
 app.use(bodyParser.urlencoded({extended:false}));
 apps.use(bodyParser.json());
+
+app.listen(PORT, function(){
+    console.log("Listening to : "+ PORT);
+})
