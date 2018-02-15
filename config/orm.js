@@ -1,4 +1,6 @@
 
+
+
 var ormFunctions= {
     // select
     selectAll: function(table, cb){
@@ -9,10 +11,16 @@ var ormFunctions= {
         });
     },
     // insert
-    // insert: function(table, value){
-    //     var queryString = 
+    insert: function(table, columns, value, cb){
+        
+        var queryString = `INSERT INTO ${table} (${columns.toString()}) VALUES (${value.toString()})`;
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        })
+    },
 
-    // }
     //update
+   
 }
 
