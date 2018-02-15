@@ -28,8 +28,6 @@ var ormFunctions= {
         })
     }
 }
-ormFunctions.selectAll('burgers', function(data){
-    console.log(data);
-})
+
 module.exports = ormFunctions;
 
