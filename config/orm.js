@@ -1,12 +1,11 @@
-
-
-
+var connection = require('./connection.js');
 var ormFunctions= {
     // select
     selectAll: function(table, cb){
         var queryString = `SELECT * FROM ${table}`;
         connection.query(queryString, function(err, result){
             if (err) throw err;
+            
             cb(result);
         });
     },
@@ -16,7 +15,7 @@ var ormFunctions= {
         var queryString = `INSERT INTO ${table} (${columns.toString()}) VALUES (${value.toString()})`;
         connection.query(queryString, function(err, result){
             if (err) throw err;
-            cb(result);
+            // cb(result);
         })
     },
 
@@ -25,8 +24,12 @@ var ormFunctions= {
         var queryString=   `UPDATE ${table} SET ${column} = ${value} WHERE id= ${condition}`; 
         connection.query(queryString, function(err, result){
             if (err) throw err;
-            cb(result);
+            // cb(result);
         })
     }
 }
+ormFunctions.selectAll('burgers', function(data){
+    console.log(data);
+})
+module.exports = ormFunctions;
 
