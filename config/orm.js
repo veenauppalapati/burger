@@ -21,6 +21,12 @@ var ormFunctions= {
     },
 
     //update
-   
+    update: function(table, column, value, condition, cb){
+        var queryString=   `UPDATE ${table} SET ${column} = ${value} WHERE id= ${condition}`; 
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            cb(result);
+        })
+    }
 }
 
