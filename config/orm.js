@@ -15,8 +15,8 @@ var ormFunctions= {
         var queryString = `INSERT INTO ${table} (${columns.toString()}) VALUES (${value.toString()})`;
         connection.query(queryString, function(err, result){
             if (err) throw err;
-            // cb(result);
-        })
+            cb(result);
+        });
     },
 
     //update
@@ -24,8 +24,8 @@ var ormFunctions= {
         var queryString=   `UPDATE ${table} SET ${column} = ${value} WHERE id= ${condition}`; 
         connection.query(queryString, function(err, result){
             if (err) throw err;
-            // cb(result);
-        })
+            cb(result);
+        });
     }
 }
 
