@@ -30,8 +30,7 @@
                var burger= $('[name=plan]').val().trim();
                console.log(burger);
                // create a post request to send the burger to the server
-               $.post('/burger', burger).done(function(data){
-                   
+               $.post('/burger', burger).done(function(data){                  
                   console.log('burger added');
                     console.log(data);
                })

@@ -1,3 +1,25 @@
+
+{{!-- Unordered list One; burgers that are not devoured --}}
+    <h2>burgers that are not devoured!</h2>
+    
+    <ul>
+        {{#each burgers}}
+            {{#unless devoured}}
+                {{> burgers/burgers-block devour=true}}
+            {{/unless}}
+        {{/each}}
+    </ul>
+{{!-- Unordered List Two; burgers that are devoured --}}
+    <h2>burgers that are devoured!</h2>
+
+    <ul>
+        {{#each burgers}}
+            {{#if devoured}}
+                {{> burgers/burgers-block devour=false}}
+            {{/if}}
+        {{/each}}
+    </ul>
+
 <!-- creating a text Area for the user to type in a burger Name -->
 <h2> Burger Name </h2>
 <form id = 'createaburger' class = 'button-size'></form>
@@ -14,6 +36,7 @@ $('#createaburger').on('submit', function(){
     $.post('/burger', newBuger).done(function(data){
         console.log(data);
         alert('Adding burger');
+        location.reload();
     });
 });
 </script>
