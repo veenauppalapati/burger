@@ -3,20 +3,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-		<link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
+		<!-- <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" /> -->
 		<title>Eat the Burger!</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>		
-	</head>
+</head>
 	<body>
-        <!-- an imag of the burger -->
-        <img src="./assets/image/i-1-sonic-burger.jpg" alt="burger">
-		<!-- creating a text Area for the user to type in a burger Name -->
-        <h2> Burger Name </h2>
-        <form id = 'addaburger' class = 'button-size'></form>
-            <textarea type='text' name='burger' ></textarea>
-            <button type="submit">Add a Burger</button>
-        </form>
+        <div class="container">
+            <!-- an imag of the burger -->
+            <img src="./assets/image/i-1-sonic-burger.jpg" alt="burger">
+            <!-- creating a text Area for the user to type in a burger Name -->
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Create a Plan</h2>
+                <form id="createplan" class="button-size">
+                    <textarea type="text" name="plan"></textarea>
+                    <button type="submit">Save Plan!</button>
+                </form>
+            </div>       
+        </div>
+        
+
+        <script type="text/javascript">
+           $('#createplan').on('submit', function(){
+               console.log('hello');
+               var burger= $('[name=plan]').val().trim();
+               console.log(burger);
+               // create a post request to send the burger to the server
+               $.post('/burger', burger).done(function(data){
+                   
+                  console.log('burger added');
+                    console.log(data);
+               })
+           });
+        </script>
 	</body>
 </html>
