@@ -10,7 +10,7 @@ var burgermodelFunctions = {
         ormFunctions.insert(table, columns, value, function(result){
             cb(result);
         });
-    },
+            },
     update: function(table, column, value, condition, cb){
         ormFunctions.update(table, function(result){
             cb(result);
