@@ -5,18 +5,23 @@ var router = express.Router();
 //Import the model (cat.js) to use its database functions.
 var burger = require("../models/burger.js");
 
-router.post('/burger', function(req, res){
-    function()
-})
+// create a get route
+router.get('/', function(req, res){
 
-app.post("/todos", function(req, res) {
-    connection.query("INSERT INTO plans (plan) VALUES (?)", [req.body.plan], function(err, result) {
-      if (err) {
-        return res.status(500).end();
-      }
+  burger.all("burgers", function(data){
+    var database_object = {
+      burgers:  data 
+    }
+     res.render('index', database_object);
+  })
   
-      // Send back the ID of the new todo
-      res.json({ id: result.insertId });
-      console.log({ id: result.insertId });
-    });
+});
+
+router.post('/burger', function(req, res){
+  var valueName = "'"+ req.body.name + "'";
+  console.log(valueName);
+  burger.insert('burgers', ['burger_name', 'devoured'], [valueName, 0],function(data){
+    res.json(data);
   });
+})
+module.exports = router;

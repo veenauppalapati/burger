@@ -4,9 +4,16 @@
     
     <ul>
         {{#each burgers}}
-            {{#unless devoured}}
-                {{> burgers/burgers-block devour=true}}
-            {{/unless}}
+        {{#unless devoured}}
+        <li>
+            <p>
+                 {{this.burger_name}}{{> burgers/burgers-block devour=false}}
+                {{!-- {{this.burger_name}}{{this.devoured}} --}}
+            </p>
+        </li>
+       
+       {{/unless}}
+           
         {{/each}}
     </ul>
 {{!-- Unordered List Two; burgers that are devoured --}}
@@ -15,14 +22,14 @@
     <ul>
         {{#each burgers}}
             {{#if devoured}}
-                {{> burgers/burgers-block devour=false}}
+               {{this.burger_name}}{{this.devoured}}
             {{/if}}
         {{/each}}
     </ul>
 
 <!-- creating a text Area for the user to type in a burger Name -->
 <h2> Burger Name </h2>
-<form id = 'createaburger' class = 'button-size'></form>
+<form id='createaburger' class = 'button-size'>
     <textarea type='text' name='burgername' ></textarea>
     <button type="submit">Create a Burger</button>
 </form>
@@ -30,10 +37,11 @@
 <script type="text/javascript">
 $('#createaburger').on('submit', function(){
     event.preventDefault();
-    var newBuger = {
-      name: $("#createaburger [name=burgername]").val().trim();
+    var newBurger = {
+      name: $("#createaburger [name=burgername]").val().trim()
     }
-    $.post('/burger', newBuger).done(function(data){
+    console.log(newBurger.name);
+    $.post('/burger', newBurger).done(function(data){
         console.log(data);
         alert('Adding burger');
         location.reload();

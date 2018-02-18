@@ -7,7 +7,7 @@ var burgermodelFunctions = {
         });
     },
     insert: function(table, columns, value, cb){
-        ormFunctions.insert(table, function(result){
+        ormFunctions.insert(table, columns, value, function(result){
             cb(result);
         });
     },
@@ -17,3 +17,5 @@ var burgermodelFunctions = {
         });
     },
 }
+
+module.exports = burgermodelFunctions;

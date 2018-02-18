@@ -25,7 +25,8 @@
         
 
         <script type="text/javascript">
-           $('#createplan').on('submit', function(){
+           $('#createplan').on('submit', function(event){
+               event.preventDefault();
                console.log('hello');
                var burger= $('[name=plan]').val().trim();
                console.log(burger);
