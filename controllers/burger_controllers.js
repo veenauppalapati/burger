@@ -23,5 +23,21 @@ router.post('/burger', function(req, res){
   burger.insert('burgers', ['burger_name', 'devoured'], [valueName, 0],function(data){
     res.json(data);
   });
-})
+});
+
+router.put('/api/burger/:id', function(req, res){
+  var condition = `id = ${req.params.id}`;
+//parameters(table, column, value, condition, cb)
+  burger.update(
+    //parameter 1:table
+    'burgers', 
+    // parameter 2: column
+    'burger_name',
+    //parameter 3: value
+    req.body.name,
+    // parameter 4: condition
+    condition,
+  )
+});
+
 module.exports = router;

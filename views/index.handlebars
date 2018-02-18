@@ -22,7 +22,7 @@
     <ul>
         {{#each burgers}}
             {{#if devoured}}
-               {{this.burger_name}}{{this.devoured}}
+               {{this.burger_name}}{{> burgers/burgers-block devour=true}}
             {{/if}}
         {{/each}}
     </ul>
@@ -37,14 +37,36 @@
 <script type="text/javascript">
 $('#createaburger').on('submit', function(){
     event.preventDefault();
+
     var newBurger = {
       name: $("#createaburger [name=burgername]").val().trim()
     }
-    console.log(newBurger.name);
+
+    //Send the post request
     $.post('/burger', newBurger).done(function(data){
         console.log(data);
         alert('Adding burger');
         location.reload();
     });
 });
+// event listener for updating put request
+$('.change-burgerstate').on('click', function(event){
+    event.preventDefault();
+
+    var id = $(this).data('id');
+    var newstate = $(this).data('newstate');
+
+    var newBurgerState = {
+        devoured: newstate
+    };
+    //Send the put request
+    $.put('/burger/api/'+id, newBurgerState).done(function(data){
+        console.log(data);
+        alert('burger update');
+        location.reload();
+    });
+
+})
+ 
+
 </script>
